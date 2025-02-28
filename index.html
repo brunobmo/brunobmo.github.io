@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academic and Scientific CV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,13 +17,61 @@
         .section {
             margin-bottom: 20px;
         }
+        .profile {
+            text-align: center;
+        }
+        .profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .social-icons a {
+            text-decoration: none;
+            font-size: 24px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #0073b1; /* LinkedIn blue for example */
+        }
+        .separator {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .separator hr {
+            width: 50%;
+            border: none;
+            height: 2px;
+            background-color: #2C3E50;
+        }
     </style>
 </head>
 <body>
-    <h1>Academic and Scientific CV</h1>
-    <p><strong>Name:</strong> [Your Name]</p>
-    <p><strong>Position:</strong> [Your Position]</p>
-    <p><strong>Institution:</strong> [Your Institution]</p>
+    <div class="profile">
+        <img src="imagens/foto.jpeg" alt="Your Photo">
+        <h1>Academic and Scientific CV</h1>
+        <p><strong>Name:</strong> [Your Name]</p>
+        <p><strong>Position:</strong> [Your Position]</p>
+        <p><strong>Institution:</strong> [Your Institution]</p>
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-researchgate"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-medium"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-orcid"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-user"></i> Authenticus</a>
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+    
+    <div class="separator">
+        <hr>
+    </div>
     
     <div class="section">
         <h2>Scientific Publications</h2>
