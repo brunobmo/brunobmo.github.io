@@ -3,123 +3,773 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic and Scientific CV</title>
+    <title>Academic Curriculum | [Your Name]</title>
+    <meta name="description" content="Academic curriculum and research profile for [Your Name].">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        :root {
+            --bg: #edf2f4;
+            --bg-accent: #dce8eb;
+            --surface: rgba(255, 255, 255, 0.78);
+            --surface-strong: #ffffff;
+            --line: rgba(18, 48, 68, 0.12);
+            --text: #173042;
+            --muted: #5d7382;
+            --brand: #0f5b73;
+            --brand-soft: #d8eef4;
+            --highlight: #b7844d;
+            --shadow: 0 24px 60px rgba(20, 47, 63, 0.12);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --max-width: 1180px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            line-height: 1.6;
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Manrope", sans-serif;
+            color: var(--text);
+            line-height: 1.65;
+            background:
+                radial-gradient(circle at top left, rgba(183, 132, 77, 0.18), transparent 28%),
+                radial-gradient(circle at 85% 12%, rgba(15, 91, 115, 0.16), transparent 24%),
+                linear-gradient(180deg, #f7fafb 0%, var(--bg) 52%, #e7eff1 100%);
         }
-        h1, h2 {
-            color: #2C3E50;
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(23, 48, 66, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 48, 66, 0.035) 1px, transparent 1px);
+            background-size: 34px 34px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6), transparent 90%);
         }
-        .section {
-            margin-bottom: 20px;
+
+        a {
+            color: inherit;
         }
-        .profile {
-            text-align: center;
+
+        img {
+            display: block;
+            max-width: 100%;
         }
-        .profile img {
-            width: 150px;
-            height: 150px;
+
+        .page {
+            width: min(calc(100% - 32px), var(--max-width));
+            margin: 0 auto;
+            padding: 32px 0 56px;
+        }
+
+        .hero,
+        .metrics,
+        .content-grid {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: rise 0.75s ease forwards;
+        }
+
+        .metrics {
+            animation-delay: 0.15s;
+        }
+
+        .content-grid {
+            animation-delay: 0.3s;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.9fr);
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .hero-copy {
+            padding: 42px;
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-copy::after {
+            content: "";
+            position: absolute;
+            inset: auto -40px -40px auto;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            margin-bottom: 10px;
+            background: radial-gradient(circle, rgba(183, 132, 77, 0.25), transparent 70%);
         }
-        .social-icons {
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.83rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--brand);
+            background: rgba(216, 238, 244, 0.92);
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--highlight);
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        h1 {
+            margin-top: 18px;
+            font-size: clamp(2.8rem, 4vw, 4.8rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        .hero-subtitle {
+            margin-top: 16px;
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 60ch;
+        }
+
+        .hero-summary {
+            margin-top: 26px;
+            padding-left: 18px;
+            border-left: 3px solid rgba(183, 132, 77, 0.65);
+            font-size: 1rem;
+            color: #395364;
+            max-width: 65ch;
+        }
+
+        .hero-actions {
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
         }
-        .social-icons a {
+
+        .button,
+        .button-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 18px;
+            border-radius: 999px;
+            font-weight: 700;
             text-decoration: none;
-            font-size: 24px;
-            color: #333;
-            transition: color 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
         }
-        .social-icons a:hover {
-            color: #0073b1; /* LinkedIn blue for example */
+
+        .button {
+            color: #ffffff;
+            background: linear-gradient(135deg, #0f5b73, #1f7a91);
+            box-shadow: 0 14px 28px rgba(15, 91, 115, 0.25);
         }
-        .separator {
-            margin: 30px 0;
-            text-align: center;
+
+        .button-secondary {
+            color: var(--brand);
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(15, 91, 115, 0.14);
         }
-        .separator hr {
-            width: 50%;
-            border: none;
-            height: 2px;
-            background-color: #2C3E50;
+
+        .button:hover,
+        .button-secondary:hover,
+        .social-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .profile-card {
+            padding: 28px;
+            border-radius: var(--radius-xl);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 22px;
+        }
+
+        .portrait {
+            width: 180px;
+            aspect-ratio: 1;
+            margin: 0 auto;
+            padding: 8px;
+            border-radius: 32px;
+            background: linear-gradient(135deg, rgba(15, 91, 115, 0.2), rgba(183, 132, 77, 0.24));
+        }
+
+        .portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 26px;
+        }
+
+        .profile-card h2 {
+            margin-top: 18px;
+            font-size: 1.6rem;
+        }
+
+        .profile-card p {
+            margin: 6px 0 0;
+            color: var(--muted);
+        }
+
+        .contact-list,
+        .social-links,
+        .detail-list,
+        .highlights {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(15, 91, 115, 0.08);
+            border-radius: var(--radius-md);
+        }
+
+        .contact-list i {
+            color: var(--brand);
+            margin-top: 4px;
+        }
+
+        .contact-label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(15, 91, 115, 0.1);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .social-link:hover {
+            border-color: rgba(15, 91, 115, 0.32);
+        }
+
+        .metrics {
+            margin-top: 22px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .metric-card {
+            padding: 22px;
+            border-radius: var(--radius-lg);
+        }
+
+        .metric-label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .metric-value {
+            display: block;
+            margin-top: 12px;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            color: var(--text);
+        }
+
+        .metric-note {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .content-grid {
+            margin-top: 22px;
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            padding: 28px;
+            border-radius: var(--radius-lg);
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 18px;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+
+        .span-6 {
+            grid-column: span 6;
+        }
+
+        .span-8 {
+            grid-column: span 8;
+        }
+
+        .span-12 {
+            grid-column: span 12;
+        }
+
+        .detail-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .detail-list li {
+            display: grid;
+            gap: 4px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .detail-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .detail-title {
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .detail-meta {
+            font-size: 0.94rem;
+            color: var(--brand);
+        }
+
+        .publication-group {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .publication-group:first-of-type {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .publication-heading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .publication-heading i {
+            color: var(--highlight);
+        }
+
+        .publication-intro {
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .publication-list {
+            margin: 0;
+            padding-left: 22px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .publication-list li {
+            color: var(--muted);
+            padding-left: 4px;
+        }
+
+        .publication-list strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .publication-list a {
+            color: var(--brand);
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .publication-list a:hover {
+            text-decoration: underline;
+        }
+
+        .highlights {
+            display: grid;
+            gap: 12px;
+        }
+
+        .highlights li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 13px 14px;
+            border-radius: var(--radius-md);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(216, 238, 244, 0.56));
+            border: 1px solid rgba(15, 91, 115, 0.09);
+        }
+
+        .highlights i {
+            margin-top: 4px;
+            color: var(--highlight);
+        }
+
+        .section-kicker {
+            display: inline-block;
+            margin-bottom: 14px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--brand);
+        }
+
+        .footer-note {
+            margin-top: 18px;
+            font-size: 0.92rem;
+            color: var(--muted);
+        }
+
+        @keyframes rise {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 980px) {
+            .hero,
+            .metrics {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .span-4,
+            .span-6,
+            .span-8 {
+                grid-column: span 12;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .page {
+                width: min(calc(100% - 20px), var(--max-width));
+                padding: 18px 0 34px;
+            }
+
+            .hero-copy,
+            .profile-card,
+            .card,
+            .metric-card {
+                padding: 22px;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions,
+            .social-links {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .social-links {
+                display: grid;
+            }
+
+            h1 {
+                font-size: clamp(2.2rem, 12vw, 3.4rem);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .hero-actions,
+            .social-links {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .button,
+            .button-secondary,
+            .social-link {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="profile">
-        <img src="imagens/foto.jpeg" alt="Your Photo">
-        <h1>Academic and Scientific CV</h1>
-        <p><strong>Name:</strong> [Your Name]</p>
-        <p><strong>Position:</strong> [Your Position]</p>
-        <p><strong>Institution:</strong> [Your Institution]</p>
-        <div class="social-icons">
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-researchgate"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-medium"></i></a>
-            <a href="#" target="_blank"><i class="fa-brands fa-orcid"></i></a>
-            <a href="#" target="_blank"><i class="fas fa-user"></i> Authenticus</a>
-            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-        </div>
-    </div>
-    
-    <div class="separator">
-        <hr>
-    </div>
-    
-    <div class="section">
-        <h2>Scientific Publications</h2>
-        <ul>
-            <li>Indexed journal article (ISI or Scopus)</li>
-            <li>Journal article (not included above)</li>
-            <li>Full paper</li>
-            <li>Other communications/publications</li>
-        </ul>
-    </div>
-    
-    <div class="section">
-        <h2>Participation in R&D Activities and Projects</h2>
-        <ul>
-            <li>Integrated Member of a Research Center recognized by FCT</li>
-            <li>Participation in projects</li>
-        </ul>
-    </div>
-    
-    <div class="section">
-        <h2>Supervision of Academic Work</h2>
-        <ul>
-            <li>Master’s final project/internship supervision</li>
-            <li>Bachelor’s final project/internship supervision</li>
-        </ul>
-    </div>
-    
-    <div class="section">
-        <h2>Participation in Academic Degree Panels</h2>
-        <ul>
-            <li>PhD thesis examiner</li>
-            <li>Master’s dissertation/project/internship examiner</li>
-            <li>Bachelor’s final project/internship examiner</li>
-        </ul>
-    </div>
-    
-    <div class="section">
-        <h2>Teaching Skills</h2>
-        <ul>
-            <li>Teaching activity</li>
-        </ul>
-    </div>
-    
-    <div class="section">
-        <h2>Other Relevant Activities</h2>
-        <ul>
-            <li>[Other activities]</li>
-        </ul>
-    </div>
+    <main class="page">
+        <section class="hero">
+            <div class="hero-copy panel">
+                <span class="eyebrow">Academic Curriculum</span>
+                <h1>[Your Name]</h1>
+                <p class="hero-subtitle">[Your Position] at [Your Institution], focused on [your research area], teaching excellence, and high-impact academic collaboration.</p>
+                <p class="hero-summary">Use this space for a concise academic statement: your research interests, institutional role, main methodological strengths, and the broader contribution of your work.</p>
+                <div class="hero-actions">
+                    <a class="button" href="mailto:your.email@example.com"><i class="fa-solid fa-envelope"></i> Contact</a>
+                    <a class="button-secondary" href="#curriculum"><i class="fa-solid fa-book-open"></i> View Curriculum</a>
+                </div>
+            </div>
+
+            <aside class="profile-card panel">
+                <div>
+                    <div class="portrait">
+                        <img src="imagens/foto.jpeg" alt="Portrait of [Your Name]">
+                    </div>
+                    <h2>[Your Name]</h2>
+                    <p>[Your Position]</p>
+                    <p>[Department or Research Unit]</p>
+                </div>
+
+                <ul class="contact-list">
+                    <li>
+                        <i class="fa-solid fa-building-columns"></i>
+                        <div>
+                            <span class="contact-label">Institution</span>
+                            <span>[Your Institution]</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <span class="contact-label">Location</span>
+                            <span>[City, Country]</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-at"></i>
+                        <div>
+                            <span class="contact-label">Email</span>
+                            <span>your.email@example.com</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="social-links">
+                    <a class="social-link" href="#" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="social-link" href="#" target="_blank" rel="noreferrer" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                    <a class="social-link" href="#" target="_blank" rel="noreferrer" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    <a class="social-link" href="#" target="_blank" rel="noreferrer" aria-label="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
+                    <a class="social-link" href="#" target="_blank" rel="noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a class="social-link" href="#" target="_blank" rel="noreferrer" aria-label="Personal profile"><i class="fa-solid fa-globe"></i></a>
+                </div>
+            </aside>
+        </section>
+
+        <section class="metrics" aria-label="Academic metrics">
+            <article class="metric-card panel">
+                <span class="metric-label">Publications</span>
+                <span class="metric-value">9</span>
+                <p class="metric-note">Indexed journal articles published in ISI or Scopus journals.</p>
+            </article>
+            <article class="metric-card panel">
+                <span class="metric-label">Projects</span>
+                <span class="metric-value">XX</span>
+                <p class="metric-note">R&D initiatives, funded collaborations, and consortium work.</p>
+            </article>
+            <article class="metric-card panel">
+                <span class="metric-label">Supervisions</span>
+                <span class="metric-value">XX</span>
+                <p class="metric-note">Completed and ongoing thesis, internship, and capstone guidance.</p>
+            </article>
+            <article class="metric-card panel">
+                <span class="metric-label">Panels</span>
+                <span class="metric-value">XX</span>
+                <p class="metric-note">Service on academic juries, evaluations, and examination boards.</p>
+            </article>
+        </section>
+
+        <section class="content-grid" id="curriculum">
+            <article class="card panel span-8">
+                <span class="section-kicker">Research Profile</span>
+                <h3>Professional Summary</h3>
+                <p>Replace this text with a sharper overview of your academic trajectory, core research themes, interdisciplinary expertise, and the kinds of impact your work has had in your field or institution.</p>
+            </article>
+
+            <article class="card panel span-4">
+                <span class="section-kicker">Focus Areas</span>
+                <h3>Current Priorities</h3>
+                <ul class="highlights">
+                    <li><i class="fa-solid fa-flask"></i><span>[Primary research line or lab focus]</span></li>
+                    <li><i class="fa-solid fa-network-wired"></i><span>[Collaborative network, center, or consortium work]</span></li>
+                    <li><i class="fa-solid fa-chalkboard-user"></i><span>[Teaching innovation or curricular leadership]</span></li>
+                </ul>
+            </article>
+
+            <article class="card panel span-12">
+                <span class="section-kicker">Outputs</span>
+                <h3>Scientific Publications</h3>
+                <div class="publication-group">
+                    <div class="publication-heading">
+                        <i class="fa-solid fa-book-journal-whills"></i>
+                        <span>Journals</span>
+                    </div>
+                    <p class="publication-intro">Indexed journal articles published in ISI or Scopus journals.</p>
+                    <ol class="publication-list">
+                        <li><strong>Silva, R., Oliveira, O., &amp; Oliveira, B. (2026).</strong> Challenge-Based Learning: a Technology Perspective. <em>International Journal of Technological Learning, Innovation and Development, 17</em>(3). <a href="https://doi.org/10.1504/IJTLID.2026.10071046" target="_blank" rel="noreferrer">https://doi.org/10.1504/IJTLID.2026.10071046</a></li>
+                        <li><strong>Oliveira, B., &amp; Oliveira, O. (2025).</strong> Developing Data Workflows: From Conceptual Blueprints to Physical Implementation. <em>Data, 10</em>(7), 97. <a href="https://doi.org/10.3390/data10070097" target="_blank" rel="noreferrer">https://doi.org/10.3390/data10070097</a></li>
+                        <li><strong>Peixoto, T., Oliveira, O., Costa e Silva, E., Oliveira, B., &amp; Ribeiro, F. (2025).</strong> A Data Quality Pipeline for Industrial Environments: Architecture and Implementation. <em>Computers, 14</em>(7), 241. <a href="https://doi.org/10.3390/computers14070241" target="_blank" rel="noreferrer">https://doi.org/10.3390/computers14070241</a></li>
+                        <li><strong>Peixoto, T., Oliveira, B., Oliveira, O., &amp; Ribeiro, F. (2025).</strong> Data Quality Assessment in Smart Manufacturing: A Review. <em>Systems, 13</em>(4), 243. <a href="https://doi.org/10.3390/systems13040243" target="_blank" rel="noreferrer">https://doi.org/10.3390/systems13040243</a></li>
+                        <li><strong>Oliveira, B., Duarte, A., &amp; Oliveira, O. (2024).</strong> Towards a Data Catalog for Data Analytics. <em>Procedia Computer Science, 237</em>, 691-700. <a href="https://doi.org/10.1016/j.procs.2024.05.155" target="_blank" rel="noreferrer">https://doi.org/10.1016/j.procs.2024.05.155</a></li>
+                        <li><strong>Oliveira, B., Oliveira, O., &amp; Belo, O. (2023).</strong> Overcoming traditional ETL systems architectural problems using a service-oriented approach. <em>Expert Systems, 40</em>(10). <a href="https://doi.org/10.1111/exsy.13442" target="_blank" rel="noreferrer">https://doi.org/10.1111/exsy.13442</a></li>
+                        <li><strong>Oliveira, B., Oliveira, O., &amp; Belo, O. (2021).</strong> ETL Logs Under a Pattern-Oriented Approach. <em>International Journal of Data Warehousing and Mining (IJDWM), 17</em>(4), 29-47. <a href="https://doi.org/10.4018/IJDWM.2021100102" target="_blank" rel="noreferrer">https://doi.org/10.4018/IJDWM.2021100102</a></li>
+                        <li><strong>Belo, O., Santos, V., Oliveira, B., Gomes, C., Marques, R. (2018).</strong> RAID-B2K, Transforming BPMN Conceptual Schemas into Kettle Execution Primitives. <em>International Journal of Information and Decision Sciences, 10</em>, 3-18. <a href="https://doi.org/10.1504/IJIDS.2018.090666" target="_blank" rel="noreferrer">https://doi.org/10.1504/IJIDS.2018.090666</a></li>
+                        <li><strong>Oliveira, B., Belo, O. (2017).</strong> On the Specification of Extract, Transform, and Load Patterns Behavior: A Domain-Specific Language Approach. <em>Expert Systems, 34</em>. <a href="https://doi.org/10.1111/exsy.12168" target="_blank" rel="noreferrer">https://doi.org/10.1111/exsy.12168</a></li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="card panel span-6">
+                <span class="section-kicker">Research Service</span>
+                <h3>R&amp;D Activities and Projects</h3>
+                <ul class="detail-list">
+                    <li>
+                        <span class="detail-title">Research center affiliation</span>
+                        <span class="detail-meta">Integrated membership or institutional role</span>
+                        <span>Describe your recognized research unit, center, or lab membership.</span>
+                    </li>
+                    <li>
+                        <span class="detail-title">Project participation</span>
+                        <span class="detail-meta">National, international, or industry-funded initiatives</span>
+                        <span>List funded projects, partnerships, or technical responsibilities.</span>
+                    </li>
+                    <li>
+                        <span class="detail-title">Academic leadership</span>
+                        <span class="detail-meta">Coordination, work packages, or advisory roles</span>
+                        <span>Use this item for principal investigator or coordination responsibilities.</span>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="card panel span-4">
+                <span class="section-kicker">Mentorship</span>
+                <h3>Supervision</h3>
+                <ul class="highlights">
+                    <li><i class="fa-solid fa-user-graduate"></i><span>Master's dissertations, internships, and final projects.</span></li>
+                    <li><i class="fa-solid fa-diagram-project"></i><span>Bachelor's capstone projects and supervised practical work.</span></li>
+                    <li><i class="fa-solid fa-people-group"></i><span>Co-supervision, research mentorship, or lab onboarding.</span></li>
+                </ul>
+            </article>
+
+            <article class="card panel span-4">
+                <span class="section-kicker">Academic Evaluation</span>
+                <h3>Degree Panels</h3>
+                <ul class="highlights">
+                    <li><i class="fa-solid fa-scale-balanced"></i><span>PhD thesis examination and external jury service.</span></li>
+                    <li><i class="fa-solid fa-file-signature"></i><span>Master's dissertation, project, and internship evaluation.</span></li>
+                    <li><i class="fa-solid fa-school"></i><span>Bachelor's project assessment and curricular panels.</span></li>
+                </ul>
+            </article>
+
+            <article class="card panel span-4">
+                <span class="section-kicker">Teaching</span>
+                <h3>Teaching Practice</h3>
+                <ul class="highlights">
+                    <li><i class="fa-solid fa-book"></i><span>Courses taught, course design, and syllabus development.</span></li>
+                    <li><i class="fa-solid fa-laptop"></i><span>Digital pedagogy, assessment design, and student support.</span></li>
+                    <li><i class="fa-solid fa-award"></i><span>Any pedagogical distinctions, innovation, or coordination roles.</span></li>
+                </ul>
+            </article>
+
+            <article class="card panel span-12">
+                <span class="section-kicker">Additional Contributions</span>
+                <h3>Other Relevant Activities</h3>
+                <ul class="detail-list">
+                    <li>
+                        <span class="detail-title">Editorial, reviewing, or committee service</span>
+                        <span class="detail-meta">Journals, conferences, associations, institutional committees</span>
+                        <span>Add service roles that reinforce your academic visibility and contribution to the field.</span>
+                    </li>
+                    <li>
+                        <span class="detail-title">Knowledge transfer and outreach</span>
+                        <span class="detail-meta">Public engagement, workshops, media, professional training</span>
+                        <span>Use this space for impact beyond publications and classroom activity.</span>
+                    </li>
+                    <li>
+                        <span class="detail-title">Certifications, distinctions, or funded recognition</span>
+                        <span class="detail-meta">Awards, grants, invited lectures, professional credentials</span>
+                        <span>Highlight the items that strengthen the credibility of your academic profile.</span>
+                    </li>
+                </ul>
+                <p class="footer-note">Replace placeholders, numbers, and links with your real academic data before publishing.</p>
+            </article>
+        </section>
+    </main>
 </body>
 </html>
